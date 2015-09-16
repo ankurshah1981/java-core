@@ -9,7 +9,7 @@ public class MyRunnable implements Runnable {
 	
 	public void run() {
 		for (int i = 0; i < LOOP_LENGTH; i++) {
-			data.setCounter(data.getCounter() + 1);
+			data.addCounter();
 			data.getItems().add("Hello - " + i);
 		}
 	}

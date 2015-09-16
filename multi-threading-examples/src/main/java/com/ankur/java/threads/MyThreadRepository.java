@@ -20,8 +20,8 @@ public class MyThreadRepository {
 		return counter;
 	}
 
-	public void setCounter(int counter) {
-		this.counter = counter;
+	public void addCounter() {
+		this.counter++;
 	}
 
 	public List<String> getItems() {

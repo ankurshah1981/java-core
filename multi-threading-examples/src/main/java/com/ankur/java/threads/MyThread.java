@@ -15,7 +15,7 @@ public class MyThread extends Thread {
 		for (int i = 0; i < LOOP_LENGTH; i++) {
 			System.out.println("Hello - " + i);
 			try {
-				data.setCounter(data.getCounter() + 1);
+				data.addCounter();
 				data.getItems().add("Hello - " + i);
 				Thread.sleep(SLEEP_TIME);
 			} catch (InterruptedException e) {
