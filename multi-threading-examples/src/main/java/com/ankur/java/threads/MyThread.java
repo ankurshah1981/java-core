@@ -16,7 +16,7 @@ public class MyThread extends Thread {
 			System.out.println("Hello - " + i);
 			try {
 				data.addCounter();
-				data.getItems().add("Hello - " + i);
+				data.addItem("Hello - " + i);
 				Thread.sleep(SLEEP_TIME);
 			} catch (InterruptedException e) {
 				System.out.println(e.getMessage());

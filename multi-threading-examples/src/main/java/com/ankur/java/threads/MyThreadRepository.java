@@ -24,12 +24,16 @@ public class MyThreadRepository {
 		this.counter++;
 	}
 
-	public List<String> getItems() {
-		return items;
+	public synchronized void addCounterSync() {
+		this.counter++;
 	}
 
-	public void setItems(List<String> items) {
-		this.items = items;
+	public void addItem(String item) {
+		this.items.add(item);
+	}
+
+	public synchronized void addItemSync(String item) {
+		this.items.add(item);
 	}
 	
 	public int getItemSize() {
