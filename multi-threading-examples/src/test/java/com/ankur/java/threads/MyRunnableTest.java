@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -61,7 +62,7 @@ public class MyRunnableTest {
 	 * The asserts will fail because of concurrency issue
 	 * @throws InterruptedException
 	 */
-	//@Test
+	@Ignore
 	public void testRunWithJoinMultiThread() throws InterruptedException {
 		MyRunnable r1 = new MyRunnable();
 		MyRunnable r2 = new MyRunnable();
