@@ -1,11 +1,12 @@
 package com.ankur.java.core.problems;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.testng.Assert;
+import static org.testng.Assert.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import com.ankur.java.core.problems.algorithms.PrimeNumberFinder;
 
 
 public class PrimeNumberFinderTest {
@@ -14,31 +15,35 @@ public class PrimeNumberFinderTest {
 		
 	
 	@Test
-	public void testPrime() throws Exception {
+	public void testFinderConstruction (int nPosition, int expectedPrimeNumber) throws Exception {
+		testPrimeNumberFinder = new PrimeNumberFinder();
 		List<Integer> cachedList = testPrimeNumberFinder.getPrimeNumberOrderedList();
+		assertEquals(cachedList.size(), 2);
+	}
 		
-		Integer fifth = testPrimeNumberFinder.findNthPrimeNumber(5);
-		cachedList = testPrimeNumberFinder.getPrimeNumberOrderedList();
+	
+	@Test(dataProvider="nthPrimeNumber")
+	public void testPrime(int nPosition, int expectedPrimeNumber) throws Exception {
 		
-		Integer sixth = testPrimeNumberFinder.findNthPrimeNumber(6);
-		cachedList = testPrimeNumberFinder.getPrimeNumberOrderedList();
+		int actualNthPrime = testPrimeNumberFinder.findNthPrimeNumber(nPosition);
 		
-		Integer tenth = testPrimeNumberFinder.findNthPrimeNumber(10);
-		cachedList = testPrimeNumberFinder.getPrimeNumberOrderedList();
+		assertEquals(actualNthPrime, expectedPrimeNumber);
+		List<Integer> cachedList = testPrimeNumberFinder.getPrimeNumberOrderedList();
+		assertTrue(cachedList.size() >= nPosition);
 	}
 	
 	
 	@Test(dataProvider="primeNumberProvider")
 	public void testForPrimes(int number) {
 		boolean isPrime = testPrimeNumberFinder.isPrime(number);
-		Assert.assertTrue(isPrime);
+		assertTrue(isPrime);
 	}
 	
 	
 	@Test(dataProvider="compositeNumberProvider")
 	public void testNonPrimes(int number) {
 		boolean isPrime = testPrimeNumberFinder.isPrime(number);
-		Assert.assertFalse(isPrime);
+		assertFalse(isPrime);
 	}
 	
 	
@@ -49,7 +54,6 @@ public class PrimeNumberFinderTest {
 		};
 	}
 	
-	
 	@DataProvider
 	public Object[][] compositeNumberProvider() {
 		return new Object[][] { 
@@ -57,14 +61,13 @@ public class PrimeNumberFinderTest {
 		};
 	}
 	
-	
 	@DataProvider
-	public Object[][] naturalNumberProvider() {
-		int testValues = 1000;
-		List<Integer> numbers = new ArrayList<Integer>(testValues);
-		for(int i=5; i<=testValues; i=i+2) {
-			numbers.add(i);
-		}
-		return new Object[][] { numbers.toArray() };
+	public Object[][] nthPrimeNumber() {
+		return new Object[][] { 
+			{3, 5}, {4, 7}, {5, 11}, {6, 13}, {7, 17}, {8, 19}, 
+			{9, 23}, {10, 29}, {11, 31}, {12, 37}, {13, 41}, {14, 43}, 
+			{15, 47}, {16, 53}, {17, 59}, {18, 61}, {19, 67}, {20, 71}, {21, 73}, {22, 79}
+		};
 	}
+	
 }
