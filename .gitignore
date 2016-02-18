@@ -1,0 +1,6 @@
+.gitignore
+*/.settings
+*/.classpath
+*/.project
+*/target/
+*/test-output/
